@@ -1,0 +1,15 @@
+{% extends "quiz/home.html" %}
+{% block content %}
+<div class="container">
+<h3>{{question.question_text}}</h3>
+{% if error_message %}<div class="alert alert-danger fade in">,<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>{{error_message}}</div>{% endif %}
+      <form action="/next/" method="POST">
+      {% csrf_token %}
+      {% for choice in question.choice_set.all %}
+          <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+          <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br />
+      {% endfor %}
+          <input type="submit" value="Next" name = 'inp'/>
+      </form>
+</div>
+{% endblock %}

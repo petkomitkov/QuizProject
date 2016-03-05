@@ -1,0 +1,15 @@
+{% extends 'quiz/home.html' %}
+{% block content %}
+<div class='container'>
+  <span>{{ question.question_text }}</span>
+  <form input="" method="POST" role="form">
+    {% for choice in question.choice_set.all %}
+      <div class="form-group">
+        <input type="radio" class="form-control">
+        <p>{{ choice.choice_text }}</p>
+      </div>
+    {% endfor %}
+    <button class="btn" >Next</button>
+  </form>
+</div>
+{% endblock %}

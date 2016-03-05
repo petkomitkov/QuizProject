@@ -1,0 +1,24 @@
+{% extends 'quiz/home.html' %}
+{% block content %}
+<div class='container'>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Number of Questions</th>
+        <th>Highest Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for category in categories %}
+      <tr>
+        <td>{{ category.category_name }}</td>
+        <td>{{ category.question_set.all|length }}</td>
+        <td>{{ category.highest_score }}</td>
+        <td><a href="{% url 'quiz:start_quiz' category.category_name %}">Start QUIZ</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}
