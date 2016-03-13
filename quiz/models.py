@@ -63,13 +63,14 @@ class QuizManager(models.Manager):
         try:
             new_quiz = list(Quiz.objects.all())[0]
         except IndexError:
-
+            from random import shuffle
             question_set = Question.objects.filter(category__category_name=category)
 
             if len(question_set) == 0:
                 raise ImproperlyConfigured("There are no questions in this category!")
 
             question_set = question_set.values_list('id', flat=True)
+            shuffle(question_set)
             questions = ",".join(map(str, question_set)) + ","
             new_quiz =  self.create(name = category,
                                     question_list = questions,
