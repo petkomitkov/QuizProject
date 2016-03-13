@@ -76,6 +76,7 @@ class LogoutView(RedirectView):
         logout(request)
         return super(LogoutView, self).get(request, *args, **kwargs)
 
+@method_decorator(login_required, name = 'dispatch')
 class AnswerQuiz(FormView):
     form_class = QuestionForm
     template_name = 'quiz/question.html'
