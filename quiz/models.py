@@ -67,8 +67,7 @@ class QuizManager(models.Manager):
             question_set = Question.objects.filter(category__category_name=category)
 
             if len(question_set) == 0:
-                raise ImproperlyConfigured("Question set of the quiz is empty. "
-                                        "Please configure questions properly")
+                raise ImproperlyConfigured("There are no questions in this category!")
 
             question_set = question_set.values_list('id', flat=True)
             questions = ",".join(map(str, question_set)) + ","
@@ -102,16 +101,12 @@ class Quiz(models.Model):
         if not self.question_list:
             return
 
-        _, others = self.question_list.split(',', 1)
-        self.question_list = others
+        _, other_questions = self.question_list.split(',', 1)
+        self.question_list = other_questions
         self.save()
 
     def add_to_score(self, points):
         self.current_score += int(points)
-        self.save()
-
-    def mark_quiz_complete(self):
-        self.complete = True
         self.save()
 
     def __str__(self):
