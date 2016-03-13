@@ -3,7 +3,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 
 class Category(models.Model):
-    category_name = models.CharField(max_length=10)
+    category_name = models.CharField(max_length=20)
     highest_score = models.IntegerField(default=0)
 
     def __str__(self):
