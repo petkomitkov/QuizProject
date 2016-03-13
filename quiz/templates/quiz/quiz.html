@@ -2,7 +2,7 @@
 {% block content %}
 <div class='container'>
   <span>{{ question.question_text }}</span>
-  <form input="" method="POST" role="form">
+  <form  method="POST" role="form">
     {% for choice in question.choice_set.all %}
       <div class="form-group">
         <input type="radio" class="form-control">
