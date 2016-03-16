@@ -131,4 +131,3 @@ class AnswerQuiz(FormView):
         self.quiz.delete()
         return render(self.request, 'quiz/results.html', results)
 
-

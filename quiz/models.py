@@ -9,6 +9,9 @@ class Category(models.Model):
     def __str__(self):
         return self.category_name
 
+    def get_highest_score(self):
+        return self.highest_score
+
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
